@@ -1,4 +1,1 @@
-ss-demo
-=======
-
-demo app for socketstream issue 
+# Welcome to your new realtime app
