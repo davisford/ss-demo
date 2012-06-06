@@ -8,7 +8,7 @@ exports.actions = function(req, res, ss) {
   req.use('security.isAdmin');
 
   // Uncomment line below to use the middleware defined in server/middleware/example
-  //req.use('example.authenticated')
+  req.use('example.authenticated')
 
   return {
 

@@ -41,7 +41,7 @@ app.get('/', function(req, res) {
 	res.serveClient('main');
 });
 
-app.get('/admin', function(req, res) {
+app.get('/admin', security.isAdmin, function(req, res) {
 	res.serveClient('main');
 });
 
