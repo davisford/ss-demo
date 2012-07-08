@@ -36,12 +36,10 @@ var app = express.createServer(
 );
 
 app.get('/', function(req, res) {
-	req.session.isAdmin = true;
-	req.session.save();
 	res.serveClient('main');
 });
 
-app.get('/admin', security.isAdmin, function(req, res) {
+app.get('/admin', security.authenticated(), function(req, res) {
 	res.serveClient('main');
 });
 
