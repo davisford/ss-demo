@@ -29,17 +29,23 @@ ss.client.templateEngine.use(require('ss-hogan'));
 // Minimize and pack assets if you type: SS_ENV=production node app.js
 if (ss.env == 'production') ss.client.packAssets();
 
+// use redis for sticky sessions
+ss.session.store.use('redis');
+ss.publish.transport.use('redis');
+
 var app = express.createServer(
-	express.bodyParser(),
-	express.static(__dirname + "/client/static"),
+//	express.bodyParser(),
+//	express.static(__dirname + "/client/static"),
 	ss.http.middleware
 );
 
 app.get('/', function(req, res) {
+  console.log('in / session =>\n', req.session);
 	res.serveClient('main');
 });
 
 app.get('/admin', security.authenticated(), function(req, res) {
+  console.log('in /admin session =>\n', req.session);
 	res.serveClient('main');
 });
 
